@@ -81,6 +81,9 @@ pub fn build(b: *std.Build) void {
         "-Wno-elaborated-enum-base",
         "-Wno-error=date-time",
         if (options.use_32bit_draw_idx) "-DIMGUI_USE_32BIT_DRAW_INDEX" else "",
+
+        // Disabling SSE since I'm getting compile errors due to use of _mm_crc32_u8 and _mm_crc32_u32
+        "-DIMGUI_DISABLE_SSE",
     };
 
     const objcflags = &.{
